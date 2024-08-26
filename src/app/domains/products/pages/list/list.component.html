@@ -1,1 +1,17 @@
-<p>list works!</p>
+<div class="container mx-auto">
+    <!-- Heeader -->
+    <app-header />
+
+    <!-- Main -->
+    <div class="grid grid-cols-4 gap-4 mt-5">
+        @for (product of products(); track $index) {
+            <app-product
+                [product]="product"
+                (addToCart)="fromChild($event)"
+            />    
+        }
+    </div>
+
+    <!-- Footer -->
+
+</div>
