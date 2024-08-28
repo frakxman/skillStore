@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input, signal, SimpleChanges } from '@angular/core';
+import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +11,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  hideSideMenu = signal(true);
+
+  private cartService = inject(CartService);
+
+  cart = this.cartService.cart;
+  total = this.cartService.total;
+
+  toggleSideMenu() {
+    this.hideSideMenu.update(prevState => !prevState);
+  }
 }
